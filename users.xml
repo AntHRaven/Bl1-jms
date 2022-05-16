@@ -1,10 +1,28 @@
 <UsersList>
     <user>
         <id>1</id>
-        <login>login</login>
-        <password>password</password>
-        <lastName>lastName</lastName>
-        <firstName>firstName</firstName>
-        <role>role</role>
+        <login>admin</login>
+        <password>$2a$10$55RFAZDHxCQGvxIr6EiZf.UNsfxl5/kYbe6nlw1dzXpt8Ucwxble.</password>
+        <lastName>admin</lastName>
+        <firstName>admin</firstName>
+        <role>ADMIN</role>
+    </user>
+
+    <user>
+        <id>2</id>
+        <login>user</login>
+        <password>user</password>
+        <lastName>user</lastName>
+        <firstName>user</firstName>
+        <role>USER</role>
+    </user>
+
+    <user>
+        <id>3</id>
+        <login>anonymous</login>
+        <password>anonymous</password>
+        <lastName>anonymous</lastName>
+        <firstName>anonymous</firstName>
+        <role>ANONYMOUS</role>
     </user>
 </UsersList>

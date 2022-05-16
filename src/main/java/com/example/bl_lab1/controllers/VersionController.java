@@ -8,7 +8,6 @@ import com.example.bl_lab1.service.ArticleService;
 import com.example.bl_lab1.service.SectionService;
 import com.example.bl_lab1.service.VersionService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
