@@ -1,0 +1,10 @@
+<UsersList>
+    <user>
+        <id>1</id>
+        <login>login</login>
+        <password>password</password>
+        <lastName>lastName</lastName>
+        <firstName>firstName</firstName>
+        <role>role</role>
+    </user>
+</UsersList>
