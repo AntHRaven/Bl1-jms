@@ -1,8 +1,6 @@
-package com.example.bl_lab1.config.security;
+package com.example.bl_lab1.security;
 
 import com.example.bl_lab1.service.AuthenticationService;
-import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,10 +13,12 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
@@ -26,8 +26,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
                             jsr250Enabled = true,
                             prePostEnabled = true) // Включает разделение по ролям
 @Lazy
-public class SecurityConfig
-      extends WebSecurityConfigurerAdapter
+public class SecurityConfig extends WebSecurityConfigurerAdapter
       implements WebMvcConfigurer {
     private static final String[] AUTH_WHITELIST = {
           // -- Swagger UI v2
@@ -61,13 +60,13 @@ public class SecurityConfig
         // Inherit security context in async function calls
         SecurityContextHolder.setStrategyName(SecurityContextHolder.MODE_INHERITABLETHREADLOCAL);
     }
-
+    
     @Override
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
-
+    
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
@@ -94,20 +93,26 @@ public class SecurityConfig
               })
               .and().authorizeRequests()
               //Доступ только для авторизованных пользователей
-              .antMatchers("/section/**").hasRole("ADMIN")
-              .antMatchers("/section/**").hasRole("USER")
-              .antMatchers("/version/**").hasRole("ADMIN")
+              .antMatchers("/user/test").hasAuthority("USER")
               .anyRequest().permitAll()
               .and().addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
+//    @Bean
+//    public CorsFilter corsFilter() {
+//        UrlBasedCorsConfigurationSource source =
+//                new UrlBasedCorsConfigurationSource();
+//        CorsConfiguration config = new CorsConfiguration();
+//        config.setAllowCredentials(true);
+//        config.addAllowedOrigin("*");
+//        config.addAllowedHeader("*");
+//        config.addAllowedMethod("*");
+//        source.registerCorsConfiguration("/**", config);
+//        return new CorsFilter(source);
+//    }
+    
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(authenticationService);
-    }
-
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 }

@@ -11,7 +11,7 @@
     <user>
         <id>2</id>
         <login>user</login>
-        <password>user</password>
+        <password>$2a$10$C3VNImTZwT61G2XZtlS5CeM9xcGKLYifcYmxTx13cF7bMHrlQIF9e</password>
         <lastName>user</lastName>
         <firstName>user</firstName>
         <role>USER</role>
@@ -20,7 +20,7 @@
     <user>
         <id>3</id>
         <login>anonymous</login>
-        <password>anonymous</password>
+        <password>$2a$10$jy/ku7fdWEPPEB9f2hafmuDItiSW0FaBnTNL9CNfV8O3lHbNsQ0Pq</password>
         <lastName>anonymous</lastName>
         <firstName>anonymous</firstName>
         <role>ANONYMOUS</role>
