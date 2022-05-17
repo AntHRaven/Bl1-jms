@@ -1,12 +1,17 @@
 package com.example.bl_lab1.service.impl;
 
+import com.atomikos.icatch.jta.UserTransactionImp;
+import com.atomikos.jdbc.nonxa.AtomikosNonXADataSourceBean;
 import com.example.bl_lab1.model.SectionEntity;
 import com.example.bl_lab1.model.VersionEntity;
 import com.example.bl_lab1.repositories.SectionRepo;
 import com.example.bl_lab1.repositories.VersionRepo;
 import com.example.bl_lab1.service.VersionService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.NotSupportedException;
+import javax.transaction.SystemException;
 import java.util.Collections;
 import java.util.List;
 
@@ -23,6 +28,7 @@ public class VersionServiceImpl implements VersionService {
     //todo change method signature
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void saveChangesByAuthorizedUser(String newText, String username, SectionEntity section) {
         VersionEntity entity = new VersionEntity();
         entity.setSectionId(section.getId());
