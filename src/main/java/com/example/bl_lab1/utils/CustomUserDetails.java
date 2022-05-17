@@ -1,20 +1,20 @@
-package com.example.bl_lab1.config;
+package com.example.bl_lab1.utils;
 
-import java.util.Collection;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.Collection;
+
 @Data
-public class CustomUserDetails
-      implements UserDetails {
+public class CustomUserDetails implements UserDetails {
     
     private Collection<? extends GrantedAuthority> authorities;
     private String password;
     private String username;
-    private Long id;
+    private Integer id;
     
     private Boolean enabled;
     private Boolean accountNonExpired;
@@ -24,7 +24,7 @@ public class CustomUserDetails
     //TODO: already exist as a bean in config package
     private PasswordEncoder passwordEncoder;
     
-    public CustomUserDetails(final Long id,
+    public CustomUserDetails(final Integer id,
                              final String username,
                              final String password,
                              final Collection<? extends GrantedAuthority> authorities

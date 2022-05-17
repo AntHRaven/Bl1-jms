@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.*;
 @Data
 public class User {
     
-    private Long id;
+    private Integer id;
     private String login;
     private String password;
     private String lastName;
