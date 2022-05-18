@@ -43,7 +43,6 @@ public class UserController {
               new UsernamePasswordAuthenticationToken(username, password));
         CustomUserDetails foundUser = authenticationService.loadUserByUsername(username);
         response.put("token", jwtTokenUtil.generateToken(foundUser));
-        response.put("userId", foundUser.getAuthorities());
         return ResponseEntity.ok().body(response);
     }
     

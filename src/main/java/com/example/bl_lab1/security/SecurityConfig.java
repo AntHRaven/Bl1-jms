@@ -93,7 +93,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
               })
               .and().authorizeRequests()
               //Доступ только для авторизованных пользователей
-              .antMatchers("/user/test").hasAuthority("USER")
+              .antMatchers("/version/**").hasAuthority("USER")
+              .antMatchers("/section/**").hasAuthority("ANONYMOUS")
+              .antMatchers("/section/approve", "/section/decline").hasAuthority("ADMIN")
               .anyRequest().permitAll()
               .and().addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
     }
