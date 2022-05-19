@@ -55,6 +55,7 @@ public class UserController {
     
     @PostMapping("create")
     public void createUser(@RequestBody User user) throws JAXBException {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userService.createUser(user);
     }
 }
