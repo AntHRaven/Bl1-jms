@@ -1,7 +1,9 @@
 package com.example.bl_lab1.controllers;
 
+import com.example.bl_lab1.model.User;
 import com.example.bl_lab1.security.JwtTokenUtil;
 import com.example.bl_lab1.service.AuthenticationService;
+import com.example.bl_lab1.service.UserService;
 import com.example.bl_lab1.utils.CustomUserDetails;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.http.MediaType;
@@ -25,11 +27,16 @@ public class UserController {
     private final AuthenticationManager authenticationManager;
     private final AuthenticationService authenticationService;
     private final JwtTokenUtil jwtTokenUtil;
+    private final UserService userService;
     
-    public UserController(AuthenticationManager authenticationManager, AuthenticationService authenticationService, JwtTokenUtil jwtTokenUtil) {
+    public UserController(AuthenticationManager authenticationManager,
+                          AuthenticationService authenticationService,
+                          JwtTokenUtil jwtTokenUtil,
+                          UserService userService) {
         this.authenticationManager = authenticationManager;
         this.authenticationService = authenticationService;
         this.jwtTokenUtil = jwtTokenUtil;
+        this.userService = userService;
     }
     
     @RequestMapping(value = "/auth", method = GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -46,8 +53,16 @@ public class UserController {
         return ResponseEntity.ok().body(response);
     }
     
-    @GetMapping("test")
+    @PostMapping("create")
     public void test() throws JAXBException {
-        System.out.println(bCryptPasswordEncoder.encode("user"));
+        User user = new User();
+        user.setFirstName("test");
+        user.setLastName("test");
+        user.setId(4);
+        user.setLogin("test");
+        user.setPassword(bCryptPasswordEncoder.encode("test"));
+        user.setRole("USER");
+        userService.createUser(user);
+//        System.out.println(bCryptPasswordEncoder.encode("user"));
     }
 }
