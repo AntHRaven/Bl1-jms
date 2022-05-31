@@ -1,7 +1,8 @@
 package com.example.bl_lab1.config;
 
+import com.atomikos.icatch.jta.UserTransactionImp;
 import com.atomikos.icatch.jta.UserTransactionManager;
-import com.example.bl_lab1.BlLab1Application;
+import com.example.bl_lab1.BlLab1JMSApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -21,6 +22,11 @@ public class ConfigTX {
     }
     
     @Bean
+    public UserTransactionImp myTransactionImp() {
+        return new UserTransactionImp();
+    }
+    
+    @Bean
     public JtaTransactionManager transactionManager() throws SystemException {
         JtaTransactionManager jtaTransactionManager = new JtaTransactionManager();
         jtaTransactionManager.setTransactionManager(userTransactionManager());
@@ -29,7 +35,7 @@ public class ConfigTX {
     }
     
     @Bean
-    public BlLab1Application application() {
-        return new BlLab1Application();
+    public BlLab1JMSApplication application() {
+        return new BlLab1JMSApplication();
     }
 }
