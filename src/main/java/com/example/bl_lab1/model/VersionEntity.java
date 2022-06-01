@@ -1,14 +1,14 @@
 package com.example.bl_lab1.model;
 
 import org.hibernate.annotations.Type;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.Instant;
 
 @Entity
 @Table(name = "version")
-public class VersionEntity implements Comparable<VersionEntity>{
+public class VersionEntity implements Comparable<VersionEntity>, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -34,10 +34,21 @@ public class VersionEntity implements Comparable<VersionEntity>{
     @Column(name = "personedited")
     private String personedited;
 
+    @Lob
+    @Type(type = "org.hibernate.type.StringType")
+    @Column(name = "ipedited")
+    private String ipedited;
 
     @Column(name = "status")
     private String status;
 
+    public String getIpedited() {
+        return ipedited;
+    }
+
+    public void setIpedited(String ipedited) {
+        this.ipedited = ipedited;
+    }
 
     public String getPersonedited() {
         return personedited;
