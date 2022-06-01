@@ -3,10 +3,11 @@ package com.example.bl_lab1.model;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "article")
-public class ArticleEntity {
+public class ArticleEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)

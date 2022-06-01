@@ -2,7 +2,7 @@ package com.example.bl_lab1.config;
 
 import com.atomikos.icatch.jta.UserTransactionImp;
 import com.atomikos.icatch.jta.UserTransactionManager;
-import com.example.bl_lab1.BlLab1JMSApplication;
+import com.example.bl_lab1.BlpsVersionSaverApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -35,7 +35,7 @@ public class ConfigTX {
     }
     
     @Bean
-    public BlLab1JMSApplication application() {
-        return new BlLab1JMSApplication();
+    public BlpsVersionSaverApplication application() {
+        return new BlpsVersionSaverApplication();
     }
 }

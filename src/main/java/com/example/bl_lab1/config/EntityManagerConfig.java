@@ -14,7 +14,7 @@ import javax.persistence.EntityManagerFactory;
 import java.util.Properties;
 
 @Configuration
-@EnableJpaRepositories(basePackages = "com.example.bl_lab1.repositories", entityManagerFactoryRef = "entityManagerFactory",
+@EnableJpaRepositories(basePackages = "com.example.bl_lab1.repository", entityManagerFactoryRef = "entityManagerFactory",
                        transactionManagerRef = "transactionManager")
 @EntityScan("com.example.bl_lab1.*")
 public class EntityManagerConfig {
@@ -28,7 +28,7 @@ public class EntityManagerConfig {
         dataSource.setUniqueResourceName("postgres");
         dataSource.setXaDataSourceClassName("org.postgresql.xa.PGXADataSource");
         Properties xaProperties = new Properties();
-        xaProperties.put("databaseName", "bl1");
+        xaProperties.put("databaseName", "postgres");
         xaProperties.setProperty("user", environment.getProperty("spring.datasource.username"));
         xaProperties.setProperty("password", environment.getProperty("spring.datasource.password"));
         xaProperties.setProperty("serverName", "localhost");

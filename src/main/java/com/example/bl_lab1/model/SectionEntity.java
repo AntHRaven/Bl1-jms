@@ -3,11 +3,12 @@ package com.example.bl_lab1.model;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.Instant;
 
 @Entity
 @Table(name = "section")
-public class SectionEntity {
+public class SectionEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
